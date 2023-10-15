@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { errorLink } from "./links/errorLink";
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:4000/",
+  uri: process.env.REACT_APP_API_URL,
   credentials: "include",
 });
 

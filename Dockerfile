@@ -8,7 +8,6 @@ WORKDIR /usr/app
 COPY ./ /usr/app
 
 RUN yarn install
-# RUN npm rebuild node-sass
 
 COPY . .
 

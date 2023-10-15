@@ -23,7 +23,7 @@ export default function RangePicker({
         type="number"
         value={fromYear}
         onChange={(e) => {
-          setFromYear(e.target.value);
+          setFromYear(parseInt(e.target.value));
         }}
         InputProps={{
           inputProps: { min: 2014, max: new Date().getFullYear() },
@@ -36,7 +36,7 @@ export default function RangePicker({
         type="number"
         value={toYear}
         onChange={(e) => {
-          setToYear(e.target.value);
+          setToYear(parseInt(e.target.value));
         }}
         InputProps={{
           inputProps: { min: 2014, max: new Date().getFullYear() },

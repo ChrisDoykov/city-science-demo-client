@@ -3,6 +3,7 @@ import { useLazyQuery } from "@apollo/client";
 import { Box, Button, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 import { isEmpty, isNil, not, or, path, prop } from "ramda";
+import { Buffer } from "buffer";
 import RangePicker from "../components/RangePicker";
 
 import GET_DATA_BETWEEN_YEARS_QUERY from "../graphql/queries/data/getTrafficDataBetweenYears.js";
@@ -12,6 +13,7 @@ function Homepage({ recheckUserStatus }) {
   const [fromYear, setFromYear] = useState(2014);
   const [toYear, setToYear] = useState(new Date().getFullYear());
   const [url, setUrl] = useState(null);
+  const [fileName, setFileName] = useState(null);
 
   let user = localStorage.getItem(LOCAL_STORAGE_USER);
   if (user) user = JSON.parse(user);
@@ -22,7 +24,23 @@ function Homepage({ recheckUserStatus }) {
       fetchPolicy: "network-only",
       onCompleted: (data) => {
         if (prop("getTrafficDataBetweenYears", data)) {
-          setUrl(path(["getTrafficDataBetweenYears", "url"], data));
+          // Get the raw blob
+          const blobData = path(
+            ["getTrafficDataBetweenYears", "data", "data"],
+            data
+          );
+          // Get the file name to use
+          const _fileName = path(["getTrafficDataBetweenYears", "key"], data);
+
+          // Create a blobUrl for the parsed data
+          const buffer = Buffer.from(blobData);
+          const utf8Formatted = buffer.toString("utf8");
+          const blob = new Blob([utf8Formatted]);
+          const _url = URL.createObjectURL(blob);
+
+          // Set both the url and the name to use for the download
+          setUrl(_url);
+          setFileName(_fileName);
         }
       },
       onError({ message }) {
@@ -83,7 +101,7 @@ function Homepage({ recheckUserStatus }) {
         >
           <Button
             variant="contained"
-            download={`traffic-data-${fromYear}-${toYear}.csv`}
+            download={fileName}
             color="secondary"
             href={url}
           >

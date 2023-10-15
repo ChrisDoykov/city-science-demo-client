@@ -4,7 +4,7 @@ export default gql`
   query GetTrafficDataBetweenYears($fromYear: Int, $toYear: Int) {
     getTrafficDataBetweenYears(fromYear: $fromYear, toYear: $toYear) {
       key
-      url
+      data
       createdAt
     }
   }

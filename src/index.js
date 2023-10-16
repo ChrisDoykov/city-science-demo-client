@@ -1,5 +1,6 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Container } from "@mui/material";
 
 // React
 import React, { Suspense } from "react";
@@ -29,7 +30,21 @@ const root = ReactDOMClient.createRoot(document.getElementById("root"));
 // Render React
 root.render(
   <React.StrictMode>
-    <Suspense fallback={<Loader />}>
+    <Suspense
+      fallback={
+        <Container
+          sx={{
+            width: "100svw",
+            height: "100svh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Loader />
+        </Container>
+      }
+    >
       <BrowserRouter>
         <ApolloProvider client={client}>
           <ThemeProvider theme={theme}>

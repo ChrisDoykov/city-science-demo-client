@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useQuery, useLazyQuery } from "@apollo/client";
+import { Container } from "@mui/material";
+
+// Components
+import Loader from "../components/Loader";
+import Header from "../components/Header";
+
+// Pages
 import Homepage from "../pages/Homepage";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
-import Loader from "../components/Loader";
 
+// Queries
 import USER_IS_LOGGED_IN_QUERY from "../graphql/queries/user/userIsLoggedIn.js";
-import Header from "../components/Header";
-import { Container } from "@mui/material";
 
 function MainRouter() {
   const [loggedIn, setLoggedIn] = useState(false);

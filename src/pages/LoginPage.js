@@ -13,8 +13,13 @@ import { prop } from "ramda";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+// Mutations
 import LOGIN_MUTATION from "../graphql/mutations/user/login.js";
+
+// Consts
 import { LOCAL_STORAGE_USER } from "../consts.js";
+
+// Components
 import Loader from "../components/Loader.js";
 
 export default function LoginPage({ recheckUserStatus }) {

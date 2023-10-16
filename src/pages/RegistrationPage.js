@@ -13,8 +13,13 @@ import { prop } from "ramda";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+// Mutations
 import REGISTER_MUTATION from "../graphql/mutations/user/register.js";
+
+// Consts
 import { LOCAL_STORAGE_USER } from "../consts.js";
+
+// Components
 import Loader from "../components/Loader.js";
 
 export default function RegistrationPage({ recheckUserStatus }) {

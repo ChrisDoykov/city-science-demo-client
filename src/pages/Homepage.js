@@ -4,10 +4,15 @@ import { Box, Button, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 import { isEmpty, isNil, not, or, path, prop } from "ramda";
 import { Buffer } from "buffer";
-import RangePicker from "../components/RangePicker";
 
+// Queries
 import GET_DATA_BETWEEN_YEARS_QUERY from "../graphql/queries/data/getTrafficDataBetweenYears.js";
+
+// Consts
 import { LOCAL_STORAGE_USER } from "../consts";
+
+// Components
+import RangePicker from "../components/RangePicker";
 
 function Homepage({ recheckUserStatus }) {
   const [fromYear, setFromYear] = useState(2014);
